@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">QuizAppKotlin</string>
+    <string name="login_email_address_hint">Your email address</string>
+    <string name="login_password_hint">Your account password</string>
+    <string name="create_new_account">Create new account</string>
+    <string name="login_button_text">LOG IN</string>
+</resources>
