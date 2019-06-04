@@ -3,7 +3,6 @@ package com.example.quizappkotlin
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.text.InputType
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
@@ -43,8 +42,11 @@ class LoginActivity : AppCompatActivity() {
     fun logIn(v: View) {
         val userEmail = userEmail_ET.text.toString()
         val userPassword = userPassword_ET.text.toString()
-        login_PB.visibility = ProgressBar.VISIBLE
-        logInWithEmailAndPassword(auth, this, userEmail, userPassword, login_PB)
+        //If pattern is correct, try to log-in
+        if(loginMenuCheckUserInput(emailPattern,userEmail,this)){
+            login_PB.visibility = ProgressBar.VISIBLE
+            logInWithEmailAndPassword(auth, this, userEmail, userPassword, login_PB)
+        }
     }
 
     // Check if already logged-in
