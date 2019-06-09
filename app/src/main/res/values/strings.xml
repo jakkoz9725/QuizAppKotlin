@@ -4,4 +4,8 @@
     <string name="login_password_hint">Your account password</string>
     <string name="create_new_account">Create new account</string>
     <string name="login_button_text">LOG IN</string>
+    <string name="continue_as_logged_in_user">Continue</string>
+    <string name="logout_from_current_account">Log out</string>
+    <string name="test">TEST</string>
+    <string name="already_logged_in_with_email">Already logged in with email</string>
 </resources>

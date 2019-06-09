@@ -1,8 +1,10 @@
 package com.example.quizappkotlin
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.constraint.ConstraintLayout
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
@@ -35,10 +37,12 @@ class LoginActivity : AppCompatActivity() {
 
     // Method called from LoginClass after successfully login
     fun changeToMenuActivity() {
-        startActivity(Intent(this, MenuActivity::class.java))
+        startActivity(Intent(this, MenuActivity::class.java).addFlags(
+            Intent.FLAG_ACTIVITY_CLEAR_TASK
+        ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
     }
 
-    // Login button onClick method
+    // Try to log in to an account with email and password // ON BUTTON CLICK
     fun logIn(v: View) {
         val userEmail = userEmail_ET.text.toString()
         val userPassword = userPassword_ET.text.toString()
@@ -48,17 +52,32 @@ class LoginActivity : AppCompatActivity() {
             logInWithEmailAndPassword(auth, this, userEmail, userPassword, login_PB)
         }
     }
-
+    // log out from currently logged-in account && show login layout // ON BUTTON CLICK
+    fun logoutFromCurrentAccount(v: View){
+        if(auth.currentUser != null){
+            auth.signOut()
+            AlreadyLoggedLayout.visibility = ConstraintLayout.GONE
+            LoginLayout.visibility = ConstraintLayout.VISIBLE
+        }else{
+            Toast.makeText(this,"Smth is wrong",Toast.LENGTH_SHORT).show()
+        }
+    }
+    //Continue with currently logged account //ON BUTTON CLICK
+    fun continueWithCurrentAccount(v: View){
+        changeToMenuActivity()
+    }
     // Check if already logged-in
+    @SuppressLint("SetTextI18n")
     public override fun onStart() {
         super.onStart()
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            Toast.makeText(applicationContext, "User ${currentUser.email}", Toast.LENGTH_SHORT)
-                .show()
+            LoginLayout.visibility = ConstraintLayout.GONE
+            AlreadyLoggedLayout.visibility = ConstraintLayout.VISIBLE
+            whoIsLoggedIn_TextView.text = getString(R.string.already_logged_in_with_email) + "\n ${currentUser.email}"
         } else {
-            Toast.makeText(applicationContext, "There is noone logged in", Toast.LENGTH_SHORT)
-                .show()
+            LoginLayout.visibility = ConstraintLayout.VISIBLE
+            AlreadyLoggedLayout.visibility = ConstraintLayout.GONE
         }
     }
 }
