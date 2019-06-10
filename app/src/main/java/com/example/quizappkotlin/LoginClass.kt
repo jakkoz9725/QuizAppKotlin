@@ -6,11 +6,9 @@ import android.content.Intent
 import android.support.constraint.ConstraintLayout
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
-import android.view.View
 import android.widget.*
 import java.lang.Exception
 import com.google.firebase.auth.*
-import kotlinx.android.synthetic.main.activity_login.*
 
 fun logInCheckRequirements(
     userEmail_ET: EditText,
@@ -31,6 +29,7 @@ fun logInCheckRequirements(
         }
     } else {
         Toast.makeText(loginActivity, "Email format incorrect", Toast.LENGTH_SHORT).show()
+
     }
 }
 
@@ -115,7 +114,4 @@ fun showPasswordOnClickListener(showPasswordToggleBtn: ToggleButton, userPasswor
         }
     }
 }
-fun showRegisterLayout(RegisterLayout: ConstraintLayout, LoginLayout: ConstraintLayout){
-    LoginLayout.visibility = ConstraintLayout.GONE
-    RegisterLayout.visibility = ConstraintLayout.VISIBLE
-}
+

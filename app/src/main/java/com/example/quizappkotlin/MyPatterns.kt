@@ -14,7 +14,7 @@ val emailPattern: Pattern = Pattern.compile(
 val passwordPattern: Pattern = Pattern.compile("^[a-z0-9]{5,12}$", Pattern.CASE_INSENSITIVE)
 val userNamePattern: Pattern = Pattern.compile("^[a-z0-9]{5,12}$", Pattern.CASE_INSENSITIVE)
 
-fun checkPattern(pattern: Pattern, userInput: String): Boolean {
+fun checkPattern(pattern: Pattern, userInput: String?): Boolean {
     when (pattern) {
         emailPattern -> return pattern.matcher(userInput).find()
         userNamePattern -> return pattern.matcher(userInput).find()
