@@ -20,8 +20,6 @@ class LoginActivity : AppCompatActivity() {
         //Allow to show&hide password text
         ////LoginClass
         showPasswordOnClickListener(showPasswordToggleBtn, userPassword_ET)
-
-
     }
     fun showRegisterLayout(v: View){
         showRegisterLayout(RegisterLayout,LoginLayout)

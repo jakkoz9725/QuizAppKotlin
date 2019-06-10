@@ -30,8 +30,10 @@ fun setTextWatcher(editText: EditText, textView: TextView, pattern: Pattern) {
         override fun afterTextChanged(s: Editable?) {
             if (checkPattern(pattern, editText.text.toString())) {
                 textView.setTextColor(Color.GREEN)
+                textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_correct_green_mark,0,0,0)
             } else {
                 textView.setTextColor(Color.RED)
+                textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_incorrect_red_mark,0,0,0)
             }
         }
 
@@ -50,7 +52,9 @@ fun setTextWatcherForPassword(password1: EditText, password2: EditText, textView
         override fun afterTextChanged(s: Editable?) {
             if (password1.text.toString().equals(password2.text.toString())) {
                 textView.setTextColor(Color.GREEN)
+                textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_correct_green_mark,0,0,0)
             } else {
+                textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_incorrect_red_mark,0,0,0)
                 textView.setTextColor(Color.RED)
             }
         }
