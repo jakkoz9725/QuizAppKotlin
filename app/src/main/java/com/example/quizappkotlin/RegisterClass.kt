@@ -32,6 +32,7 @@ fun onTextChangeListener(
     setTextWatcherForPassword(newUserPasswordRepET, newUserPasswordET, passwordRepRequirement)
 
 }
+
 // Check if user input is correct and change UI
 fun setTextWatcher(editText: EditText, textView: TextView, pattern: Pattern) {
     editText.addTextChangedListener(object : TextWatcher {
@@ -58,7 +59,7 @@ fun setTextWatcher(editText: EditText, textView: TextView, pattern: Pattern) {
 fun setTextWatcherForPassword(password1: EditText, password2: EditText, textView: TextView) {
     password1.addTextChangedListener(object : TextWatcher {
         override fun afterTextChanged(s: Editable?) {
-            if (password1.text.toString().equals(password2.text.toString())) {
+            if (password1.text.toString().equals(password2.text.toString()) && password1.text.toString() != "") {
                 textView.setTextColor(Color.GREEN)
                 textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_correct_green_mark, 0, 0, 0)
             } else {
@@ -74,6 +75,7 @@ fun setTextWatcherForPassword(password1: EditText, password2: EditText, textView
         }
     })
 }
+
 //If user data is correct try to create account with email and password
 fun checkUserInput(
     userName: String,

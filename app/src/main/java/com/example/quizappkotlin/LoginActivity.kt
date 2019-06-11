@@ -25,10 +25,14 @@ class LoginActivity : AppCompatActivity() {
         ////LoginClass
         showPasswordOnClickListener(showPasswordToggleBtn, userPassword_ET)
     }
+
     //Show LoginLayout and hide Register layout && set onTextChangeListeners
     fun showRegisterLayout(v: View) {
-        RegisterLayout.visibility = View.VISIBLE
-        LoginLayout.visibility = View.GONE
+        //        RegisterLayout.visibility = View.VISIBLE
+        //        LoginLayout.visibility = View.GONE
+        // Animation Classw
+        animationViewDisappear(LoginLayout, RegisterLayout, this)
+        clearLoginLayout()
 
         onTextChangeListener(
             newUsernameET,
@@ -41,10 +45,23 @@ class LoginActivity : AppCompatActivity() {
             passwordRepRequirement
         )
     }
+
     //Show LoginLayout and hide Register layout
     fun showLoginLayout(v: View) {
-        RegisterLayout.visibility = View.GONE
-        LoginLayout.visibility = View.VISIBLE
+//        RegisterLayout.visibility = View.GONE
+//        LoginLayout.visibility = View.VISIBLE
+        animationViewDisappear(RegisterLayout, LoginLayout, this)
+        clearRegisterLayout()
+    }
+    fun clearLoginLayout(){
+        userEmail_ET.setText("")
+        userPassword_ET.setText("")
+    }
+    fun clearRegisterLayout(){
+        newUsernameET.setText("")
+        newUserEmailET.setText("")
+        newUserPasswordET.setText("")
+        newUserPasswordRepET.setText("")
     }
 
     // Try to log in to an account with email and password // ON BUTTON CLICK
