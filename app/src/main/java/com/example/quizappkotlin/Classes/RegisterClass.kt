@@ -1,4 +1,4 @@
-package com.example.quizappkotlin
+package com.example.quizappkotlin.Classes
 
 import android.graphics.Color
 import android.text.Editable
@@ -8,6 +8,9 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import com.example.quizappkotlin.*
+import com.example.quizappkotlin.Activities.LoginActivity
+import com.example.quizappkotlin.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.database.*
@@ -25,11 +28,31 @@ fun onTextChangeListener(
     newUserPasswordRepET: EditText,
     passwordRepRequirement: TextView
 ) {
-    setTextWatcher(newUsernameET, usernameRequirement, userNamePattern)
-    setTextWatcher(newUserEmailET, emailRequirement, emailPattern)
-    setTextWatcher(newUserPasswordET, passwordRequirement, passwordPattern)
-    setTextWatcherForPassword(newUserPasswordET, newUserPasswordRepET, passwordRepRequirement)
-    setTextWatcherForPassword(newUserPasswordRepET, newUserPasswordET, passwordRepRequirement)
+    setTextWatcher(
+        newUsernameET,
+        usernameRequirement,
+        userNamePattern
+    )
+    setTextWatcher(
+        newUserEmailET,
+        emailRequirement,
+        emailPattern
+    )
+    setTextWatcher(
+        newUserPasswordET,
+        passwordRequirement,
+        passwordPattern
+    )
+    setTextWatcherForPassword(
+        newUserPasswordET,
+        newUserPasswordRepET,
+        passwordRepRequirement
+    )
+    setTextWatcherForPassword(
+        newUserPasswordRepET,
+        newUserPasswordET,
+        passwordRepRequirement
+    )
 
 }
 
@@ -93,7 +116,12 @@ fun checkUserInput(
         && userPassword.equals(userRepPassword)
     ) {
         val newUser = User(userName, userEmail, userPassword)
-        createNewAccount(newUser, registerProgressBar, databaseReference, loginActivity)
+        createNewAccount(
+            newUser,
+            registerProgressBar,
+            databaseReference,
+            loginActivity
+        )
     } else {
         Toast.makeText(loginActivity, "Check the requirements", Toast.LENGTH_SHORT).show()
     }
@@ -106,9 +134,12 @@ fun createNewAccount(
     databaseReference: DatabaseReference,
     loginActivity: LoginActivity
 ) {
-    val usernameCorrect = checkPattern(userNamePattern, userInput.userName)
-    val emailCorrect = checkPattern(emailPattern, userInput.userEmail)
-    val passwordCorrect = checkPattern(passwordPattern, userInput.userPassword)
+    val usernameCorrect =
+        checkPattern(userNamePattern, userInput.userName)
+    val emailCorrect =
+        checkPattern(emailPattern, userInput.userEmail)
+    val passwordCorrect =
+        checkPattern(passwordPattern, userInput.userPassword)
 
 
     if (usernameCorrect && passwordCorrect && emailCorrect) {

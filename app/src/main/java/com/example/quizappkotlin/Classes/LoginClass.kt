@@ -1,4 +1,4 @@
-package com.example.quizappkotlin
+package com.example.quizappkotlin.Classes
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -7,6 +7,11 @@ import android.support.constraint.ConstraintLayout
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.widget.*
+import com.example.quizappkotlin.Activities.LoginActivity
+import com.example.quizappkotlin.Activities.MenuActivity
+import com.example.quizappkotlin.checkPattern
+import com.example.quizappkotlin.emailPattern
+import com.example.quizappkotlin.passwordPattern
 import java.lang.Exception
 import com.google.firebase.auth.*
 
@@ -23,7 +28,13 @@ fun logInCheckRequirements(
     if (checkPattern(emailPattern, userEmail)) {
         if (checkPattern(passwordPattern, userPassword)) {
             login_PB.visibility = ProgressBar.VISIBLE
-            logInWithEmailAndPassword(auth, loginActivity, userEmail, userPassword, login_PB)
+            logInWithEmailAndPassword(
+                auth,
+                loginActivity,
+                userEmail,
+                userPassword,
+                login_PB
+            )
         } else {
             Toast.makeText(loginActivity, "Password format is incorrect", Toast.LENGTH_SHORT).show()
         }

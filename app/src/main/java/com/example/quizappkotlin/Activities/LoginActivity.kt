@@ -1,10 +1,11 @@
-package com.example.quizappkotlin
+package com.example.quizappkotlin.Activities
 
 import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.constraint.ConstraintLayout
 import android.view.View
+import com.example.quizappkotlin.*
+import com.example.quizappkotlin.Classes.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_login.*
@@ -19,6 +20,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        overridePendingTransition(R.anim.animation_view_appear,R.anim.animation_view_disappear)
 
         auth = FirebaseAuth.getInstance()
         //Allow to show&hide password text
@@ -53,11 +55,11 @@ class LoginActivity : AppCompatActivity() {
         animationViewDisappear(RegisterLayout, LoginLayout, this)
         clearRegisterLayout()
     }
-    fun clearLoginLayout(){
+    private fun clearLoginLayout(){
         userEmail_ET.setText("")
         userPassword_ET.setText("")
     }
-    fun clearRegisterLayout(){
+    private fun clearRegisterLayout(){
         newUsernameET.setText("")
         newUserEmailET.setText("")
         newUserPasswordET.setText("")
@@ -79,7 +81,7 @@ class LoginActivity : AppCompatActivity() {
     //Continue with currently logged account //ON BUTTON CLICK
     fun continueWithCurrentAccount(v: View) {
         //LoginClass
-        changeToMenuActivity(this)
+        startActivity(changeToMenuActivity(this))
     }
 
     // Create account

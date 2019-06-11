@@ -5,9 +5,15 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 
+fun getAppearAnimation(context: Context): Animation{
+    return AnimationUtils.loadAnimation(context, R.anim.animation_view_appear)
+}
+fun getDisappearAnimation(context: Context): Animation{
+    return AnimationUtils.loadAnimation(context, R.anim.animation_view_disappear)
+}
 
 fun animationViewDisappear(viewToDisappear: View, viewToAppear: View, applicationContext: Context) {
-    val animationDisappear: Animation = AnimationUtils.loadAnimation(applicationContext, R.anim.animation_view_disappear)
+    val animationDisappear = getDisappearAnimation(applicationContext)
     animationDisappear.setAnimationListener(object : Animation.AnimationListener {
         override fun onAnimationRepeat(animation: Animation?) {
 
@@ -27,7 +33,7 @@ fun animationViewDisappear(viewToDisappear: View, viewToAppear: View, applicatio
     viewToDisappear.startAnimation(animationDisappear)
 }
 private fun animationViewAppear(viewToAppear: View, applicationContext: Context){
-    val animationAppear: Animation = AnimationUtils.loadAnimation(applicationContext, R.anim.animation_view_appear)
+    val animationAppear = getAppearAnimation(applicationContext)
     animationAppear.setAnimationListener(object: Animation.AnimationListener{
         override fun onAnimationRepeat(animation: Animation?) {
 

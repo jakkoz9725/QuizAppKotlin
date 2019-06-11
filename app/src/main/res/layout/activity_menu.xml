@@ -1,17 +1,240 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MenuActivity">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             tools:context=".Activities.MenuActivity">
 
-    <Button
-            android:text="LOG OUT"
-            android:layout_width="wrap_content"
-            android:onClick="logoutAndBackToLoginMenu"
-            android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/button"/>
+    <android.support.constraint.ConstraintLayout
+            android:id="@+id/listOfQuizzesConstraintLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topBarLayout"
+            app:layout_constraintVertical_bias="0.0">
+
+        <ListView
+                android:id="@+id/listOfMyQuizzesLV"
+                android:layout_width="0dp"
+                android:layout_height="450dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:dividerHeight="6dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hintTV"
+                tools:visibility="visible" />
+
+        <ListView
+                android:id="@+id/listOfQuizesLV"
+                android:layout_width="0dp"
+                android:layout_height="450dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:dividerHeight="6dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hintTV"
+                tools:visibility="visible" />
+
+        <Button
+                android:id="@+id/searchListBT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@android:string/search_go"
+                app:layout_constraintStart_toEndOf="@+id/searchListET"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+        <EditText
+                android:id="@+id/searchListET"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#FF9800"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="search..."
+                tools:visibility="visible" />
+
+        <TextView
+                android:id="@+id/hintTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="search Quiz by it's name or creator name"
+                android:textColor="#0AE00F"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchListET"
+                tools:visibility="visible" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+            android:id="@+id/MenuConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="80dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topBarLayout"
+            app:layout_constraintVertical_bias="1.0"
+            tools:visibility="visible">
+
+        <Button
+                android:id="@+id/listOfMyQuizesBtn"
+                android:layout_width="400dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="208dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/menu_buttons_shape"
+                android:fontFamily="@font/anonymous_pro"
+                android:paddingStart="40dp"
+                android:text="Show my quizes"
+                android:textAlignment="viewStart"
+                android:textAllCaps="true"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/listOfQuizzesBT"
+                app:layout_constraintVertical_bias="0.0"/>
+
+        <Button
+                android:id="@+id/createNewQuizBT"
+                android:layout_width="400dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="116dp"
+                android:background="@drawable/menu_buttons_shape"
+                android:backgroundTintMode="multiply"
+                android:fontFamily="@font/anonymous_pro"
+                android:paddingStart="40dp"
+                android:text="Create new quiz"
+                android:textAlignment="viewStart"
+                android:textAllCaps="true"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="208dp" app:layout_constraintStart_toStartOf="parent"/>
+
+        <Button
+                android:id="@+id/listOfQuizzesBT"
+                android:layout_width="400dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="208dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/menu_buttons_shape"
+                android:fontFamily="@font/anonymous_pro"
+                android:paddingStart="40dp"
+                android:text="List of quizes"
+                android:textAlignment="viewStart"
+                android:textAllCaps="true"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/createNewQuizBT"
+                app:layout_constraintVertical_bias="0.0"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <LinearLayout
+            android:id="@+id/topBarLayout"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
+
+        <Button
+                android:id="@+id/settingsBT"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:text="Settings"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <android.support.constraint.ConstraintLayout
+            android:id="@+id/blockerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone">
+
+        <android.support.constraint.ConstraintLayout
+                android:id="@+id/settingsLayout"
+                android:layout_width="140dp"
+                android:layout_height="250dp"
+                android:clickable="true"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                    android:id="@+id/logoutBT"
+                    android:layout_width="90dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="34dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Log out"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/currectLoggedUserEmailT" />
+
+            <TextView
+                    android:id="@+id/currectLoggedUserEmailT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="TextView"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.507"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+
 </android.support.constraint.ConstraintLayout>
