@@ -1,4 +1,4 @@
-package com.example.quizappkotlin
+package com.example.quizappkotlin.Others
 
 
 import java.util.regex.Pattern

@@ -9,9 +9,9 @@ import android.text.method.PasswordTransformationMethod
 import android.widget.*
 import com.example.quizappkotlin.Activities.LoginActivity
 import com.example.quizappkotlin.Activities.MenuActivity
-import com.example.quizappkotlin.checkPattern
-import com.example.quizappkotlin.emailPattern
-import com.example.quizappkotlin.passwordPattern
+import com.example.quizappkotlin.Others.checkPattern
+import com.example.quizappkotlin.Others.emailPattern
+import com.example.quizappkotlin.Others.passwordPattern
 import java.lang.Exception
 import com.google.firebase.auth.*
 
@@ -26,7 +26,11 @@ fun logInCheckRequirements(
     val userPassword = userPassword_ET.text.toString()
     //If pattern is correct, try to log-in
     if (checkPattern(emailPattern, userEmail)) {
-        if (checkPattern(passwordPattern, userPassword)) {
+        if (checkPattern(
+                passwordPattern,
+                userPassword
+            )
+        ) {
             login_PB.visibility = ProgressBar.VISIBLE
             logInWithEmailAndPassword(
                 auth,

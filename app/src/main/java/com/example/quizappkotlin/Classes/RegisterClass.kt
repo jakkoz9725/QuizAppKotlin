@@ -8,8 +8,8 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import com.example.quizappkotlin.*
 import com.example.quizappkotlin.Activities.LoginActivity
+import com.example.quizappkotlin.Others.*
 import com.example.quizappkotlin.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
@@ -135,11 +135,20 @@ fun createNewAccount(
     loginActivity: LoginActivity
 ) {
     val usernameCorrect =
-        checkPattern(userNamePattern, userInput.userName)
+        checkPattern(
+            userNamePattern,
+            userInput.userName
+        )
     val emailCorrect =
-        checkPattern(emailPattern, userInput.userEmail)
+        checkPattern(
+            emailPattern,
+            userInput.userEmail
+        )
     val passwordCorrect =
-        checkPattern(passwordPattern, userInput.userPassword)
+        checkPattern(
+            passwordPattern,
+            userInput.userPassword
+        )
 
 
     if (usernameCorrect && passwordCorrect && emailCorrect) {

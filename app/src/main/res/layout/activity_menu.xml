@@ -137,7 +137,8 @@
                 android:textStyle="bold"
                 android:visibility="visible"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="150dp" app:layout_constraintStart_toStartOf="parent"/>
+                android:layout_marginStart="150dp" app:layout_constraintStart_toStartOf="parent"
+                android:onClick="createNewQuiz"/>
 
         <Button
                 android:id="@+id/listOfQuizzesBT"
@@ -185,7 +186,7 @@
                 android:textStyle="bold" app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="8dp" android:background="@drawable/ic_settings_mainmenu"
-                android:onClick="showSettingsLayout"/>
+                android:onClick="showSettingsDialogue"/>
 
     </android.support.constraint.ConstraintLayout>
 

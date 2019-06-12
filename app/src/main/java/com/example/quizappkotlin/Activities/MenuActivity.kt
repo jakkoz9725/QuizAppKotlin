@@ -7,10 +7,9 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.example.quizappkotlin.*
-import com.example.quizappkotlin.Classes.getAccountsDatabaseReference
-import com.example.quizappkotlin.Classes.getAuthInstance
-import com.example.quizappkotlin.Classes.getCurrentUsername
-import com.example.quizappkotlin.Classes.logOut
+import com.example.quizappkotlin.Classes.*
+import com.example.quizappkotlin.Others.MyDataCallback
+import com.example.quizappkotlin.Others.getAppearAnimation
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_menu.*
 import kotlinx.android.synthetic.main.dialogue_settings.*
@@ -42,7 +41,11 @@ class MenuActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext, "Username is $username", Toast.LENGTH_SHORT)
                         .show()
                     MenuConstraintLayout.visibility = View.VISIBLE
-                    MenuConstraintLayout.startAnimation(getAppearAnimation(applicationContext))
+                    MenuConstraintLayout.startAnimation(
+                        getAppearAnimation(
+                            applicationContext
+                        )
+                    )
                 }
             })
     }
@@ -51,15 +54,11 @@ class MenuActivity : AppCompatActivity() {
     fun logoutAndBackToLoginMenu() {
         logOut(auth, applicationContext)
     }
-
-    fun showSettingsLayout(@Suppress("UNUSED_PARAMETER")v: View) {
-        val dialog = Dialog(this, R.style.PauseDialog)
-        dialog.setContentView(R.layout.dialogue_settings)
-        dialog.loggedUserEmailT.text = auth.currentUser?.email.toString()
-        dialog.show()
-        dialog.logout_Button.setOnClickListener {
-            dialog.dismiss()
-            logoutAndBackToLoginMenu()
-        }
+    fun showSettingsDialogue(@Suppress("UNUSED_PARAMETER") v: View) {
+        showSettingsDialogue(this,auth)
+    }
+    fun createNewQuiz(@Suppress("UNUSED_PARAMETER") v: View){
+        //LoginClass
+        showQuizCreationDialogue(this)
     }
 }
