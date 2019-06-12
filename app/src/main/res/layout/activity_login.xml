@@ -17,7 +17,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
-            tools:visibility="visible">
+            tools:visibility="gone">
 
         <android.support.constraint.ConstraintLayout
                 android:id="@+id/registerEditTexts"
@@ -340,7 +340,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.485"
-            tools:visibility="gone">
+            tools:visibility="visible">
 
         <ToggleButton
                 android:id="@+id/showPasswordToggleBtn"

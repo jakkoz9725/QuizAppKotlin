@@ -26,3 +26,4 @@ fun getCurrentUsername(myRefAccounts: DatabaseReference, currentUserEmail: Strin
 
     })
 }
+

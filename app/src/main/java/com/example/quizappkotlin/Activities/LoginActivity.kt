@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 
 class LoginActivity : AppCompatActivity() {
-
+    private lateinit var currentlyLoggedInUserEmail: String
     private lateinit var auth: FirebaseAuth
     private val database = FirebaseDatabase.getInstance()
     private val accountDatabaseReference = database.reference.child("Accounts")
@@ -20,19 +20,16 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        overridePendingTransition(R.anim.animation_view_appear,R.anim.animation_view_disappear)
-
+        overridePendingTransition(R.anim.animation_view_appear, R.anim.animation_view_disappear)
         auth = FirebaseAuth.getInstance()
-        //Allow to show&hide password text
-        ////LoginClass
+        //      Allow to show&hide password text field
+        //      LoginClass
         showPasswordOnClickListener(showPasswordToggleBtn, userPassword_ET)
     }
 
     //Show LoginLayout and hide Register layout && set onTextChangeListeners
-    fun showRegisterLayout(v: View) {
-        //        RegisterLayout.visibility = View.VISIBLE
-        //        LoginLayout.visibility = View.GONE
-        // Animation Classw
+    fun showRegisterLayout(@Suppress("UNUSED_PARAMETER")v: View) {
+        // Animation Class
         animationViewDisappear(LoginLayout, RegisterLayout, this)
         clearLoginLayout()
 
@@ -49,17 +46,19 @@ class LoginActivity : AppCompatActivity() {
     }
 
     //Show LoginLayout and hide Register layout
-    fun showLoginLayout(v: View) {
+    fun showLoginLayout(@Suppress("UNUSED_PARAMETER")v: View) {
 //        RegisterLayout.visibility = View.GONE
 //        LoginLayout.visibility = View.VISIBLE
         animationViewDisappear(RegisterLayout, LoginLayout, this)
         clearRegisterLayout()
     }
-    private fun clearLoginLayout(){
+
+    private fun clearLoginLayout() {
         userEmail_ET.setText("")
         userPassword_ET.setText("")
     }
-    private fun clearRegisterLayout(){
+
+    private fun clearRegisterLayout() {
         newUsernameET.setText("")
         newUserEmailET.setText("")
         newUserPasswordET.setText("")
@@ -67,35 +66,36 @@ class LoginActivity : AppCompatActivity() {
     }
 
     // Try to log in to an account with email and password // ON BUTTON CLICK
-    fun logIn(v: View) {
+    fun logIn(@Suppress("UNUSED_PARAMETER")v: View) {
         //LoginClass
         logInCheckRequirements(userEmail_ET, userPassword_ET, login_PB, auth, this)
     }
 
     // log out from currently logged-in account && show login layout // ON BUTTON CLICK
-    fun logoutFromCurrentAccount(v: View) {
+    fun logoutFromCurrentAccount(@Suppress("UNUSED_PARAMETER")v: View) {
         //LoginClass
         logoutFromCurrentAccount(auth, AlreadyLoggedLayout, LoginLayout, this)
     }
 
     //Continue with currently logged account //ON BUTTON CLICK
-    fun continueWithCurrentAccount(v: View) {
+    fun continueWithCurrentAccount(@Suppress("UNUSED_PARAMETER")v: View) {
         //LoginClass
-        startActivity(changeToMenuActivity(this))
+        changeToMenuActivity(this, currentlyLoggedInUserEmail)
+        finish()
     }
 
     // Create account
-    fun createAccount(v: View) {
+    fun createAccount(@Suppress("UNUSED_PARAMETER")v: View) {
         val username = newUsernameET.text.toString()
-        val userpassword = newUserPasswordET.text.toString()
-        val userpasswordRep = newUserPasswordRepET.text.toString()
+        val userPassword = newUserPasswordET.text.toString()
+        val userPasswordRep = newUserPasswordRepET.text.toString()
         val userEmail = newUserEmailET.text.toString()
 
         checkUserInput(
             username,
             userEmail,
-            userpassword,
-            userpasswordRep,
+            userPassword,
+            userPasswordRep,
             this,
             registerPB,
             accountDatabaseReference
@@ -106,7 +106,7 @@ class LoginActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     public override fun onStart() {
         super.onStart()
-        checkCurrentUser(
+        currentlyLoggedInUserEmail = checkCurrentUser(
             auth, LoginLayout,
             AlreadyLoggedLayout,
             whoIsLoggedIn_TextView,

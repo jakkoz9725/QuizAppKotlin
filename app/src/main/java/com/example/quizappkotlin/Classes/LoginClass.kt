@@ -51,16 +51,13 @@ fun logInWithEmailAndPassword(
     userPassword: String,
     progressBar: ProgressBar
 ) {
+    progressBar.visibility = ProgressBar.VISIBLE
     auth.signInWithEmailAndPassword(userEmail, userPassword)
         .addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                Toast.makeText(
-                    activity, "Authentication successfully.",
-                    Toast.LENGTH_SHORT
-                ).show()
-                changeToMenuActivity(activity)
+                progressBar.visibility = ProgressBar.GONE
+                changeToMenuActivity(activity, userEmail)
             } else {
-                //Check for exception and show a Toast message to user
                 try {
                     throw task.exception!!
                 } catch (invalidEmail: FirebaseAuthInvalidUserException) {
@@ -70,10 +67,9 @@ fun logInWithEmailAndPassword(
                 } catch (e: Exception) {
                     Toast.makeText(activity, "Error ${e.message}", Toast.LENGTH_SHORT).show()
                 }
-
+                progressBar.visibility = ProgressBar.GONE
             }
         }
-    progressBar.visibility = ProgressBar.INVISIBLE
 }
 
 fun logoutFromCurrentAccount(
@@ -98,22 +94,28 @@ fun checkCurrentUser(
     AlreadyLoggedLayout: ConstraintLayout,
     whoIsLoggedIn_TextView: TextView,
     already_logged_in_with_email: String
-) {
+): String {
     val currentUser = auth.currentUser
+    val currentUserEmail: String
     if (currentUser != null) {
+        currentUserEmail = currentUser.email.toString()
         LoginLayout.visibility = ConstraintLayout.GONE
         AlreadyLoggedLayout.visibility = ConstraintLayout.VISIBLE
-        whoIsLoggedIn_TextView.text = already_logged_in_with_email + "\n ${currentUser.email}"
+        whoIsLoggedIn_TextView.text = "$already_logged_in_with_email\n $currentUserEmail"
     } else {
         LoginLayout.visibility = ConstraintLayout.VISIBLE
         AlreadyLoggedLayout.visibility = ConstraintLayout.GONE
+        currentUserEmail = ""
     }
+    return currentUserEmail
 }
 
-fun changeToMenuActivity(loginActivity: LoginActivity): Intent {
-    return Intent(loginActivity, MenuActivity::class.java).addFlags(
-        Intent.FLAG_ACTIVITY_CLEAR_TASK
-    ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+fun changeToMenuActivity(loginActivity: LoginActivity, userEmail: String) {
+    loginActivity.startActivity(
+        Intent(loginActivity, MenuActivity::class.java).putExtra("currentlyLoggedInUserEmail", userEmail).addFlags(
+            Intent.FLAG_ACTIVITY_CLEAR_TASK
+        ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    )
 }
 
 fun showPasswordOnClickListener(showPasswordToggleBtn: ToggleButton, userPassword_ET: EditText) {
